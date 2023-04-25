@@ -8,6 +8,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -20,22 +22,10 @@ import pe.edu.superherocompose.data.model.SuperHero
 
 @Composable
 fun SuperHeroes(viewModel: SuperHeroViewModel) {
-    /*val superHeroes = remember {
-        mutableStateOf(mutableListOf<SuperHero>())
-
-    }*/
     val superHeroes by viewModel.superHeroes.observeAsState(listOf())
-    val sampleUrl = "https://imgs.search.brave.com/eIV8j4C_qYV92FYPS-K_FoUhZqmczTCPcKx0y119VKs/rs:fit:735:1119:1/g:ce/aHR0cHM6Ly9pLnBp/bmltZy5jb20vNzM2/eC9hNi9kYy9hYi9h/NmRjYWJiMWY3MDE2/NDFkN2M1NjQ3YmI1/OWVjMDA5OS5qcGc"
-    superHeroes.value.add (
-        SuperHero(
-            "Batman",
-            "Bruce Wayne",
-            sampleUrl
-        )
-    )
 
     LazyColumn() {
-        items(superHeroes.value){superHero ->
+        items(superHeroes){superHero ->
             SuperHeroItem(superHero)
 
         }
